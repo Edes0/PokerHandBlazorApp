@@ -1,0 +1,54 @@
+﻿@page "/CardGame"
+
+@*@inject IServiceManager serviceManager*@
+
+@using Entities
+@using Shared.Models
+
+<h3>CardGame</h3>
+
+@if (hand is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Suit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var card in hand)
+        {
+            <tr>
+                <td>@card.Rank</td>
+                <td>@card.Suit</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+@code {
+    CardDeck cardDeck = new(1);
+    CardDeck? throwDeck;
+    HandModel hand = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AddCardsToHand(5);
+    }
+
+    private void ShuffleCardDeck()
+    {
+        cardDeck.Shuffle();
+    }
+
+    private void AddCardsToHand(int amount)
+    {
+        hand.Cards = cardDeck.Cards.Take(amount).ToList();
+    }
+}
