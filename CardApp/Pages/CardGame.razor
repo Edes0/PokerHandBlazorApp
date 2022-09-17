@@ -1,9 +1,10 @@
 ﻿@page "/CardGame"
 
-@*@inject IServiceManager serviceManager*@
+@inject IServiceManager serviceManager
 
 @using Entities
-@using Shared.Models
+@using Service.Contracts
+
 
 <h3>CardGame</h3>
 
@@ -21,11 +22,11 @@ else
         </tr>
     </thead>
     <tbody>
-        @foreach (var card in hand)
+        @foreach (var card in hand.Cards)
         {
             <tr>
-                <td>@card.Rank</td>
-                <td>@card.Suit</td>
+                <td>@card.RankChar</td>
+                <td>@card.SuitChar</td>
             </tr>
         }
     </tbody>
@@ -35,10 +36,12 @@ else
 @code {
     CardDeck cardDeck = new(1);
     CardDeck? throwDeck;
-    HandModel hand = new();
+    HandForCreationDto hand = new();
+
 
     protected override async Task OnInitializedAsync()
     {
+        ShuffleCardDeck();
         AddCardsToHand(5);
     }
 
@@ -50,5 +53,8 @@ else
     private void AddCardsToHand(int amount)
     {
         hand.Cards = cardDeck.Cards.Take(amount).ToList();
+        serviceManager.HandService.CreateHandAsync(hand);
     }
+
+    private void Save
 }
