@@ -4,7 +4,7 @@
 
 @using Entities
 @using Service.Contracts
-
+@using SharedObjects.DataTransferObjects
 
 <h3>CardGame</h3>
 
@@ -36,7 +36,7 @@ else
 @code {
     CardDeck cardDeck = new(1);
     CardDeck? throwDeck;
-    HandForCreationDto hand = new();
+    HandForCreationDto? hand;
 
 
     protected override async Task OnInitializedAsync()
@@ -55,6 +55,4 @@ else
         hand.Cards = cardDeck.Cards.Take(amount).ToList();
         serviceManager.HandService.CreateHandAsync(hand);
     }
-
-    private void Save
 }

@@ -1,7 +1,7 @@
-﻿//using Entities;
+﻿using Entities;
 using System.Text;
 
-namespace Entities //Shared.Models TODO: FIX THIS BUGG
+namespace Shared.Models
 {
     public class HandModel
     {

@@ -1,6 +1,10 @@
+using AutoMapper;
 using CardApp.Data;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Contracts;
+using DataAccessLibrary.Data;
+using Microsoft.EntityFrameworkCore;
+using Service.Contracts;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IServiceManager, ServiceManager>();
+builder.Services.AddSingleton<IDataAccessManager, DataAccessManager>();
+//builder.Services.AddTransient<IMapper>(); Behöver jag ha automapper i denna projektet? Att ha en mapping profile i varje projekt i presenation lagret är tydligen det bästa
+//builder.Services.AddSingleton<IHandData, HandData>(); BEHÖVER?
+
+
+builder.Services.AddDbContext<SqlDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDbConnection")));
+
 
 var app = builder.Build();
 

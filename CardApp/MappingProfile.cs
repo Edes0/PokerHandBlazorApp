@@ -2,7 +2,7 @@
 using Entities;
 using SharedObjects.DataTransferObjects;
 
-namespace Services
+namespace CardApp
 {
     public class MappingProfile : Profile
     {

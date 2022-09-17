@@ -1,7 +1,6 @@
 ﻿using Contracts;
-using DataAccessLibrary.Data;
 
-namespace Repository
+namespace DataAccessLibrary.Data
 {
     public sealed class DataAccessManager : IDataAccessManager
     {

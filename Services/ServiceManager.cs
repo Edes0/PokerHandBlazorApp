@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Contracts;
+using Service;
 using Service.Contracts;
 
-namespace Service
+namespace Services
 {
     public sealed class ServiceManager : IServiceManager
     {

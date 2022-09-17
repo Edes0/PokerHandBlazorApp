@@ -2,9 +2,9 @@
 using Contracts;
 using Entities;
 using Service.Contracts;
-using Shared.DataTransferObjects;
+using SharedObjects.DataTransferObjects;
 
-namespace Service
+namespace Services
 {
     internal sealed class HandService : IHandService
     {

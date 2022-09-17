@@ -1,8 +1,11 @@
-﻿namespace Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Entities
 {
     public enum Suit { Clubs, Diamonds, Hearts, Spades }
 
     //TODO: Make abstract
+    [NotMapped]
     public class Card
     {
         //TODO: MOVE LATER

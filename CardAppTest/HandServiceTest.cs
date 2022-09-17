@@ -2,9 +2,9 @@ using AutoMapper;
 using Contracts;
 using Entities;
 using Moq;
-using Service;
 using Service.Contracts;
-using Shared.DataTransferObjects;
+using Services;
+using SharedObjects.DataTransferObjects;
 
 namespace CardAppTest
 {

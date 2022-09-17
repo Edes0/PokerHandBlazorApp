@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using Entities;
+
+namespace SharedObjects.DataTransferObjects
 {
     public abstract record HandForManipulationDto
     {
