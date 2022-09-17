@@ -14,7 +14,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<IServiceManager, ServiceManager>();
 builder.Services.AddSingleton<IDataAccessManager, DataAccessManager>();
-//builder.Services.AddTransient<IMapper>(); Behöver jag ha automapper i denna projektet? Att ha en mapping profile i varje projekt i presenation lagret är tydligen det bästa
+builder.Services.AddTransient<IMapper>(); //Behöver jag ha automapper i detta projektet? Att ha en mapping profile i varje projekt i presenation lag är tydligen det bästa
 //builder.Services.AddSingleton<IHandData, HandData>(); BEHÖVER?
 
 
