@@ -12,15 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<IServiceManager, ServiceManager>();
-builder.Services.AddSingleton<IDataAccessManager, DataAccessManager>();
-builder.Services.AddTransient<IMapper>(); //Behöver jag ha automapper i detta projektet? Att ha en mapping profile i varje projekt i presenation lag är tydligen det bästa
-//builder.Services.AddSingleton<IHandData, HandData>(); BEHÖVER?
 
+builder.Services.AddScoped<IDataAccessManager, DataAccessManager>();
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
-builder.Services.AddDbContext<SqlDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDbConnection")));
+builder.Services.AddDbContext<SqlDbContext>(opts =>
+opts.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDbConnection")));
 
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
