@@ -8,8 +8,8 @@ namespace Models
     public class HandModel : IEnumerable<CardModel>, ISubject
     {
         public Guid Id { get; set; }
-        private List<CardModel>? _cards;
         [NotMapped]
+        private List<CardModel>? _cards;
         public List<CardModel>? Cards
         {
             get { return _cards; }
@@ -19,7 +19,7 @@ namespace Models
                 Notify();
             }
         }
-        public string? StringOfCards { get; set; }
+        public string StringOfCards { get; set; }
 
         private List<IObserver> _observers = new();
 
@@ -27,9 +27,13 @@ namespace Models
 
         public void Add(params CardModel[] cards) => Cards.AddRange(cards);
 
+        public IEnumerator<CardModel> GetEnumerator() => Cards.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Cards.GetEnumerator();
+
         public HandModel()
         {
-            this.Attach(_stringOfCardsObserver);
+            Attach(_stringOfCardsObserver);
+            Id = Guid.NewGuid(); // TODO: Giving new guid everytime?
         }
 
         public override string ToString()
@@ -41,9 +45,6 @@ namespace Models
 
             return builder.ToString().Trim();
         }
-
-        public IEnumerator<CardModel> GetEnumerator() => Cards.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => Cards.GetEnumerator();
 
         public void Attach(IObserver observer)
         {

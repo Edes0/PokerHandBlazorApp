@@ -3,7 +3,6 @@
     public interface IDataAccessManager
     {
         IHandData Hand { get; }
-
-        Task SaveAsync();
+        //Task SaveAsync();
     }
 }

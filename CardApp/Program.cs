@@ -1,11 +1,5 @@
-using AutoMapper;
 using CardApp.Data;
 using CardApp.Extensions;
-using Contracts;
-using DataAccessLibrary.Data;
-using Microsoft.EntityFrameworkCore;
-using Service.Contracts;
-using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +9,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.ConfigureDataAccessManager();
 builder.Services.ConfigureServiceManager();
-builder.Services.ConfigureAutoMapper();
+builder.Services.ConfigureSqlDataAccess();
 builder.Services.ConfigureSqlDbContext(builder.Configuration);
 
 var app = builder.Build();

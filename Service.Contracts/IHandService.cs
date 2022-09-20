@@ -7,7 +7,7 @@ namespace Service.Contracts
     {
         Task<HandModel> CreateHandAsync(HandModel handDto);
         Task DeleteHandAsync(Guid handId);
-        Task<IEnumerable<HandDto>> GetAllHandsAsync();
-        Task<HandDto> GetHandAsync(Guid id);
+        Task<IEnumerable<HandModel>> GetAllHandsAsync();
+        Task<HandModel> GetHandAsync(Guid id);
     }
 }

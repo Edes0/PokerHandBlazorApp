@@ -1,0 +1,1 @@
+﻿INSERT INTO Hands (Id, StringOfCards) VALUES ('c09da515-091a-45c6-8876-97088aefe50d', 'T♦ 4♦ J♣ Q♠ J♥')

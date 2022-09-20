@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Contracts;
+﻿using Contracts;
 using DataAccessLibrary.Data;
 using Microsoft.EntityFrameworkCore;
 using Service.Contracts;
@@ -17,10 +16,8 @@ namespace CardApp.Extensions
 
         public static void ConfigureServiceManager(this IServiceCollection services) =>
                 services.AddScoped<IServiceManager, ServiceManager>();
-
-        public static void ConfigureAutoMapper(this IServiceCollection services) =>
-                services.AddAutoMapper(typeof(Program));
-
+        public static void ConfigureSqlDataAccess(this IServiceCollection services) =>
+                services.AddScoped<ISqlDataAccess, SqlDataAccess>();
         public static void ConfigureSqlDbContext(this IServiceCollection services,
                 IConfiguration configuration) =>
                 services.AddDbContext<SqlDbContext>(opts =>

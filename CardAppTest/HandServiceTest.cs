@@ -1,6 +1,8 @@
 using AutoMapper;
 using Contracts;
 using Entities;
+using Models;
+using Models.ModelMapping;
 using Moq;
 using Service.Contracts;
 using Services;
@@ -13,44 +15,38 @@ namespace CardAppTest
         private readonly IHandService _sut;
         private readonly ServiceManager _serviceManager;
         private readonly Mock<IDataAccessManager> _dataAccessManager = new();
-        private readonly Mock<IMapper> _mapperMock = new();
-        private readonly IMapper _mapper;
 
-        public HandServiceTest(IMapper mapper)
+        public HandServiceTest()
         {
-            _serviceManager = new ServiceManager(_dataAccessManager.Object, _mapperMock.Object);
+            _serviceManager = new ServiceManager(_dataAccessManager.Object);
             _sut = _serviceManager.HandService;
-            _mapper = mapper;
         }
 
         [Fact]
         public async Task GetHandAsync_ShouldReturnHand_WhenHandExists()
         {
             //Arrange
-            Card card1 = new(8, Suit.Hearts);
-            Card card2 = new(9, Suit.Hearts);
-            Card card3 = new(10, Suit.Hearts);
-            Card card4 = new(11, Suit.Hearts);
-            Card card5 = new(12, Suit.Hearts);
+            CardModel card1 = new(8, Models.Suit.Hearts);
+            CardModel card2 = new(9, Models.Suit.Hearts);
+            CardModel card3 = new(10, Models.Suit.Hearts);
+            CardModel card4 = new(11, Models.Suit.Hearts);
+            CardModel card5 = new(12, Models.Suit.Hearts);
 
             Guid id = Guid.NewGuid();
 
-            Hand handEntity = new() { card1, card2, card3, card4, card5 };
-            handEntity.Id = id;
+            HandModel handModel = new() { card1, card2, card3, card4, card5 };
+            handModel.Id = id;
 
-            HandDto handDto = _mapper.Map<HandDto>(handEntity);
+            Hand handEntity = HandMapper.ToEntity(handModel);
 
             _dataAccessManager.Setup(x => x.Hand.GetHandById(id))
                 .ReturnsAsync(handEntity);
 
-            _mapperMock.Setup(x => x.Map<HandDto>(handEntity))
-                .Returns(handDto);
-
             //Act
-            HandDto foundHand = await _sut.GetHandAsync(id);
+            HandModel foundHand = await _sut.GetHandAsync(id);
 
             //Assert
-            Assert.Equal(handDto, foundHand);
+            Assert.Equal(handModel, foundHand);
         }
 
         //[Fact]

@@ -6,6 +6,7 @@ namespace DataAccessLibrary.Data
     public class HandData : IHandData
     {
         private readonly ISqlDataAccess _db;
+        
         public HandData(ISqlDataAccess db)
         {
             _db = db;
@@ -26,12 +27,13 @@ namespace DataAccessLibrary.Data
             return _db.LoadOneObject<Hand, dynamic>(sql, new { });
         }
 
-        public Task InsertHand(Hand hand)
+        public async Task InsertHand(Hand hand)
+        
         {
-            string sql = $"INSERT INTO dbo.Hands (Id, StringOfCards) " +
-                                 $"VALUES (@Id, @StringOfCards)";
+            string sql = $"INSERT INTO dbo.Hands (Id, StringOfCards)" +
+                $" VALUES (@Id, @StringOfCards)";
 
-            return _db.SaveData(sql, hand);
+            await _db.SaveData(sql, hand);
         }
 
         public Task RemoveHand(Hand hand)

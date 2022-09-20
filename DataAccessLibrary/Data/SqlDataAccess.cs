@@ -9,7 +9,7 @@ namespace DataAccessLibrary.Data
     public class SqlDataAccess : ISqlDataAccess
     {
         private readonly IConfiguration _config;
-        public string ConnectionStringName { get; set; } = "SqlServerConnection";
+        public string ConnectionStringName { get; set; } = "SqlServerDbConnection";
 
         public SqlDataAccess(IConfiguration config)
         {

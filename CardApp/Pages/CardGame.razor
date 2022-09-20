@@ -2,10 +2,8 @@
 
 @inject IServiceManager serviceManager
 
-@using Model.Contracts.Observers
 @using Models
 @using Service.Contracts
-@using SharedObjects.DataTransferObjects
 
 <h3>CardGame</h3>
 
@@ -15,25 +13,25 @@
 }
 else
 {
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Rank</th>
-            <th>Suit</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var card in hand.Cards)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@card.RankChar</td>
-                <td>@card.SuitChar</td>
-                <td>       </td>
+                <th>Rank</th>
+                <th>Suit</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var card in hand.Cards)
+            {
+                <tr>
+                    <td>@card.RankChar</td>
+                    <td>@card.SuitChar</td>
+                    <td>       </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
@@ -52,9 +50,9 @@ else
         cardDeck.Shuffle();
     }
 
-    private void AddCardsToHand(int amount)
+    private async Task AddCardsToHand(int amount)
     {
         hand.Cards = cardDeck.Cards.Take(amount).ToList();
-        serviceManager.HandService.CreateHandAsync(hand);
+        await serviceManager.HandService.CreateHandAsync(hand);
     }
 }
