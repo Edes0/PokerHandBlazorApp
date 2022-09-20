@@ -28,8 +28,8 @@ namespace DataAccessLibrary.Data
 
         public Task InsertHand(Hand hand)
         {
-            string sql = $"INSERT INTO dbo.Hands (Id, Cards) " +
-                                 $"VALUES (@Id, @Cards)";
+            string sql = $"INSERT INTO dbo.Hands (Id, StringOfCards) " +
+                                 $"VALUES (@Id, @StringOfCards)";
 
             return _db.SaveData(sql, hand);
         }

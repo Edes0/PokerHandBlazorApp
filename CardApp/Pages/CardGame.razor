@@ -2,7 +2,8 @@
 
 @inject IServiceManager serviceManager
 
-@using Entities
+@using Model.Contracts.Observers
+@using Models
 @using Service.Contracts
 @using SharedObjects.DataTransferObjects
 
@@ -19,6 +20,7 @@ else
         <tr>
             <th>Rank</th>
             <th>Suit</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +29,7 @@ else
             <tr>
                 <td>@card.RankChar</td>
                 <td>@card.SuitChar</td>
+                <td>       </td>
             </tr>
         }
     </tbody>
@@ -34,10 +37,9 @@ else
 }
 
 @code {
-    CardDeck cardDeck = new(1);
-    CardDeck? throwDeck;
-    HandForCreationDto? hand = new();
-
+    CardDeckModel cardDeck = new(1);
+    CardDeckModel? throwDeck = new(0);
+    HandModel? hand = new();
 
     protected override async Task OnInitializedAsync()
     {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities;
+using Models;
 using Service.Contracts;
 using SharedObjects.DataTransferObjects;
 
@@ -30,12 +31,13 @@ namespace Services
             var handModel = _mapper.Map<HandDto>(hand);
             return handModel;
         }
-        public async Task<HandForCreationDto> CreateHandAsync(HandForCreationDto handDto)
+        public async Task<HandModel> CreateHandAsync(HandModel handModel)
+        
         {
-            var handEntity = _mapper.Map<Hand>(handDto);
+            var handEntity = _mapper.Map<Hand>(handModel);
             await _dataAccessManager.Hand.InsertHand(handEntity);
             await _dataAccessManager.SaveAsync();
-            var handToReturn = _mapper.Map<HandForCreationDto>(handEntity);
+            var handToReturn = _mapper.Map<HandModel>(handEntity);
             return handToReturn;
         }
 

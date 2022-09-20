@@ -1,10 +1,11 @@
-﻿using SharedObjects.DataTransferObjects;
+﻿using Models;
+using SharedObjects.DataTransferObjects;
 
 namespace Service.Contracts
 {
     public interface IHandService
     {
-        Task<HandForCreationDto> CreateHandAsync(HandForCreationDto handDto);
+        Task<HandModel> CreateHandAsync(HandModel handDto);
         Task DeleteHandAsync(Guid handId);
         Task<IEnumerable<HandDto>> GetAllHandsAsync();
         Task<HandDto> GetHandAsync(Guid id);

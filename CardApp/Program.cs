@@ -1,5 +1,6 @@
 using AutoMapper;
 using CardApp.Data;
+using CardApp.Extensions;
 using Contracts;
 using DataAccessLibrary.Data;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-
-builder.Services.AddScoped<IDataAccessManager, DataAccessManager>();
-builder.Services.AddScoped<IServiceManager, ServiceManager>();
-
-builder.Services.AddDbContext<SqlDbContext>(opts =>
-opts.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDbConnection")));
-
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureDataAccessManager();
+builder.Services.ConfigureServiceManager();
+builder.Services.ConfigureAutoMapper();
+builder.Services.ConfigureSqlDbContext(builder.Configuration);
 
 var app = builder.Build();
 

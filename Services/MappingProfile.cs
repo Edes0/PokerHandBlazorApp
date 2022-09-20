@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using Models;
 using SharedObjects.DataTransferObjects;
 
 namespace Services
@@ -8,13 +9,24 @@ namespace Services
     {
         public MappingProfile()
         {
-            CreateMap<Hand, HandDto>();
+            //HandModel -> Hand
+            CreateMap<HandModel, Hand>()
+                .ForMember(dest => dest.Cards, opt => opt.MapFrom(src => src));
 
-            CreateMap<Hand, HandDto>().ReverseMap();
+            CreateMap<HandModel, Hand>()
+               .ForMember(dest => dest, opt => opt.MapFrom(src => src.Cards));
 
-            CreateMap<HandForCreationDto, Hand>();
+            CreateMap<CardModel, Card>();
 
-            CreateMap<HandForCreationDto, Hand>().ReverseMap();
+            CreateMap<HandModel, Hand>().ReverseMap()
+                .ForMember(dest => dest.Cards, opt => opt.MapFrom(src => src));
+
+            CreateMap<HandModel, Hand>().ReverseMap()
+                .ForMember(dest => dest, opt => opt.MapFrom(src => src.Cards));
+
+            CreateMap<CardModel, Card>().ReverseMap();
+
+            ///////////////////
         }
     }
 }
