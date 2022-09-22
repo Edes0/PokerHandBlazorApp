@@ -10,13 +10,11 @@ namespace DataAccessLibrary.Data
 
         public DataAccessManager(SqlDbContext sqlDbContext, ISqlDataAccess sqlDataAccess)
         {
+            _sqlDataAccess = sqlDataAccess;
+
             _handData = new Lazy<IHandData>(() => new
-            HandData(sqlDataAccess));
-            //Add _ExampleData = new Lazy<IHandData>(() => new
-            //HandData(_sqlDataAccess));
+            HandData(_sqlDataAccess));
         }
         public IHandData Hand => _handData.Value;
-        //public async Task SaveAsync() => await _sqlDbContext.SaveChangesAsync();
     }
-
 }

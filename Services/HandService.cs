@@ -9,12 +9,10 @@ namespace Services
     internal sealed class HandService : IHandService
     {
         private readonly IDataAccessManager _dataAccessManager;
-        private readonly ISqlDataAccess _sqlDataAccess;
 
         //private readonly ILoggerManager _logger;
         public HandService(IDataAccessManager dataAccessManager, ISqlDataAccess sqlDataAccess)
         {
-            _sqlDataAccess = sqlDataAccess;
             _dataAccessManager = dataAccessManager;
             //_logger = logger;
         }
