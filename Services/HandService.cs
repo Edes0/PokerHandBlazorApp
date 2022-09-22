@@ -11,7 +11,7 @@ namespace Services
         private readonly IDataAccessManager _dataAccessManager;
 
         //private readonly ILoggerManager _logger;
-        public HandService(IDataAccessManager dataAccessManager, ISqlDataAccess sqlDataAccess)
+        public HandService(IDataAccessManager dataAccessManager)
         {
             _dataAccessManager = dataAccessManager;
             //_logger = logger;

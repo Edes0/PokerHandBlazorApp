@@ -8,7 +8,7 @@ namespace DataAccessLibrary.Data
         private readonly Lazy<IHandData> _handData;
         //Add new items from database here if needed
 
-        public DataAccessManager(SqlDbContext sqlDbContext, ISqlDataAccess sqlDataAccess)
+        public DataAccessManager(ISqlDataAccess sqlDataAccess)
         {
             _sqlDataAccess = sqlDataAccess;
 
