@@ -15,6 +15,7 @@ namespace Models.ModelMapping
             }
             return cardsToReturn;
         }
+
         public static List<CardModel> ToModel(this List<Card> cardList)
         {
             if (cardList == null) return null;

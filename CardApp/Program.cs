@@ -1,4 +1,3 @@
-using CardApp.Data;
 using CardApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.ConfigureDataAccessManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureSqlDataAccess();
@@ -37,3 +35,4 @@ app.Run();
 //TODO: Sätt in kort i tomt index.
 //TODO: Sätt services på rätt ställe ifrån CardGame.page
 //TODO: Kan trycka swap även om man inte väljer ett kort att byta bort
+//TODO: Finare design?

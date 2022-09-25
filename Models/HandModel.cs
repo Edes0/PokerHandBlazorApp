@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Models
 {
-    public class HandModel : /*IEnumerable<CardModel>, */ISubject
+    public class HandModel : ISubject
     {
         [NotMapped]
         private List<CardModel>? _cards;
@@ -24,10 +24,7 @@ namespace Models
 
         private StringOfCardsObserver _stringOfCardsObserver = new();
 
-        //public void Add(params CardModel[] cards) => Cards.AddRange(cards);
-
-        //public IEnumerator<CardModel> GetEnumerator() => Cards.GetEnumerator();
-        //IEnumerator IEnumerable.GetEnumerator() => Cards.GetEnumerator();
+        public void Add(params CardModel[] cards) => Cards.AddRange(cards);
 
         public HandModel()
         {
