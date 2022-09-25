@@ -16,8 +16,10 @@ namespace CardApp.Extensions
 
         public static void ConfigureServiceManager(this IServiceCollection services) =>
                 services.AddScoped<IServiceManager, ServiceManager>();
+
         public static void ConfigureSqlDataAccess(this IServiceCollection services) =>
                 services.AddScoped<ISqlDataAccess, SqlDataAccess>();
+
         public static void ConfigureSqlDbContext(this IServiceCollection services,
                 IConfiguration configuration) =>
                 services.AddDbContext<SqlDbContext>(opts =>

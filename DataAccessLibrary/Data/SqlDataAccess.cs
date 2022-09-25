@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using Dapper;
+using Entities;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -43,13 +44,5 @@ namespace DataAccessLibrary.Data
 
             return data.FirstOrDefault();
         }
-
-        //public async Task SaveDataQuery(string sql)
-        //{
-        //    string ConnectionString = _config.GetConnectionString(ConnectionStringName);
-
-        //    using IDbConnection connection = new SqlConnection(ConnectionString);
-        //    await connection.ExecuteAsync(sql);
-        //}
     }
 }

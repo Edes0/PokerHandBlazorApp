@@ -8,8 +8,9 @@ namespace Entities
     [NotMapped]
     public class Card
     {
-        public int Rank { get; }
-        public Suit Suit { get; }
+        public Guid Id { get; set; }
+        public int Rank { get; set; }
+        public Suit Suit { get; set; }
 
         public Card()
         {
@@ -20,7 +21,6 @@ namespace Entities
             Rank = rank;
             Suit = suit;
         }
-
         public char SuitChar => "\u2663\u2666\u2665\u2660"[(int)Suit];
         public char RankChar => "23456789TJQKA"[Rank];
     }

@@ -1,0 +1,40 @@
+﻿@page "/History"
+
+@using Models
+@using Service.Contracts
+
+@inject IServiceManager serviceManager
+
+<h3>History</h3>
+
+@if (hands is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Hand</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hand in hands)
+            {
+                    <tr>
+                        <td>@hand.StringOfCards</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<HandModel>? hands = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        hands = await serviceManager.HandService.GetAllHandsAsync();
+    }
+}

@@ -1,9 +1,9 @@
 ﻿@page "/CardGame"
 
-@inject IServiceManager serviceManager
-
 @using Models
 @using Service.Contracts
+
+@inject IServiceManager serviceManager
 
 <h3>CardGame</h3>
 
@@ -16,22 +16,21 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Rank</th>
-                <th>Suit</th>
-                <th></th>
+                <th>Card</th>
+                <th><input type="checkbox" name="select-all" id="select-all" /></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var card in hand.Cards)
             {
                 <tr>
-                    <td>@card.RankChar</td>
-                    <td>@card.SuitChar</td>
-                    <td>       </td>
+                    <td>@card.RankChar @card.SuitChar</td>
+                    <td><input type="checkbox" @bind="card.IsChecked"/></td>
                 </tr>
             }
         </tbody>
     </table>
+    <button class="btn btn-danger" @onclick="UpdateHand">Swap Cards</button>
 }
 
 @code {
@@ -42,7 +41,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         ShuffleCardDeck();
-        AddCardsToHand(5);
+        await AddCardsToHand(5);
     }
 
     private void ShuffleCardDeck()
@@ -52,7 +51,27 @@ else
 
     private async Task AddCardsToHand(int amount)
     {
-        hand.Cards = cardDeck.Cards.Take(amount).ToList();
+        if (amount is 0) return;
+        if (cardDeck.Count() < amount) MergeThrowDeckAndCardDeck();
+
+        hand.Cards.AddRange(cardDeck.Cards.Take(amount).ToList());
+        hand.Cards = hand.Cards; //TODO: Observern går endast genom settern och inte efter AddRange.
+        cardDeck.Cards.RemoveRange(0, amount);
         await serviceManager.HandService.CreateHandAsync(hand);
+    }
+
+    private async void UpdateHand()
+    {
+        var cardsToThrow = hand.Cards.Where(card => card.IsChecked == true).ToList();
+        cardsToThrow.ForEach(card => hand.Cards.Remove(card));
+        throwDeck.Cards.AddRange(cardsToThrow);
+        await AddCardsToHand(cardsToThrow.Count());
+    }
+
+    private void MergeThrowDeckAndCardDeck()
+    {
+        cardDeck.Cards.AddRange(throwDeck);
+        throwDeck.Cards.Clear();
+        ShuffleCardDeck();
     }
 }

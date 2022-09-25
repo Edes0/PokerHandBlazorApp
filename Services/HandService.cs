@@ -16,18 +16,21 @@ namespace Services
             _dataAccessManager = dataAccessManager;
             //_logger = logger;
         }
-        public async Task<IEnumerable<HandModel>> GetAllHandsAsync()
+
+        public async Task<List<HandModel>> GetAllHandsAsync()
         {
             var hands = await _dataAccessManager.Hand.GetHands();
             var handModel = HandMapper.ToModels(hands);
             return handModel;
         }
+
         public async Task<HandModel> GetHandAsync(Guid id)
         {
             var hand = await GetHandAndCheckIfItExists(id);
             var handModel = HandMapper.ToModel(hand);
             return handModel;
         }
+
         public async Task<HandModel> CreateHandAsync(HandModel handModel)
         {
             var handEntity = HandMapper.ToEntity(handModel);

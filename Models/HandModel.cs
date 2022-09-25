@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Models
 {
-    public class HandModel : IEnumerable<CardModel>, ISubject
+    public class HandModel : /*IEnumerable<CardModel>, */ISubject
     {
-        public Guid Id { get; set; }
         [NotMapped]
         private List<CardModel>? _cards;
         public List<CardModel>? Cards
@@ -25,15 +24,15 @@ namespace Models
 
         private StringOfCardsObserver _stringOfCardsObserver = new();
 
-        public void Add(params CardModel[] cards) => Cards.AddRange(cards);
+        //public void Add(params CardModel[] cards) => Cards.AddRange(cards);
 
-        public IEnumerator<CardModel> GetEnumerator() => Cards.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => Cards.GetEnumerator();
+        //public IEnumerator<CardModel> GetEnumerator() => Cards.GetEnumerator();
+        //IEnumerator IEnumerable.GetEnumerator() => Cards.GetEnumerator();
 
         public HandModel()
         {
+            Cards = new();
             Attach(_stringOfCardsObserver);
-            Id = Guid.NewGuid(); // TODO: Giving new guid everytime?
         }
 
         public override string ToString()

@@ -5,6 +5,7 @@ namespace DataAccessLibrary.Data
     public sealed class DataAccessManager : IDataAccessManager
     {
         private readonly ISqlDataAccess _sqlDataAccess;
+
         private readonly Lazy<IHandData> _handData;
         //Add new items from database here if needed
 

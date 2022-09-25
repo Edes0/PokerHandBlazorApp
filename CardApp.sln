@@ -31,9 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardApp", "CardApp\CardApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedObjects", "SharedObjects\SharedObjects.csproj", "{29DC73AD-541A-458E-A53F-0F49B2628D10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{AAAB8457-1FB4-4B57-84ED-F170CE25068A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{AAAB8457-1FB4-4B57-84ED-F170CE25068A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Contracts", "Model.Contracts\Model.Contracts.csproj", "{9E23156F-8919-4E55-A419-E384B8DF1348}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model.Contracts", "Model.Contracts\Model.Contracts.csproj", "{9E23156F-8919-4E55-A419-E384B8DF1348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

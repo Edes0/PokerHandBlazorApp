@@ -3,10 +3,21 @@ using Entities;
 
 namespace DataAccessLibrary.Data
 {
+    public class SimpleHand
+    {
+        public Guid Id { get; set; }
+        public string StringOfCards { get; set; }
+
+        public SimpleHand(Guid guid, String stringOfCards)
+        {
+            Id = Guid.NewGuid();
+            StringOfCards = stringOfCards;
+        }
+    }
     public class HandData : IHandData
     {
         private readonly ISqlDataAccess _db;
-        
+
         public HandData(ISqlDataAccess db)
         {
             _db = db;
@@ -28,19 +39,17 @@ namespace DataAccessLibrary.Data
         }
 
         public async Task InsertHand(Hand hand)
-        
         {
-            string sql = $"INSERT INTO dbo.Hands (Id, StringOfCards)" +
-                $" VALUES (@Id, @StringOfCards)";
+        string sql = @"INSERT INTO dbo.Hands (Id, StringOfCards, TimeCreated) VALUES (@Id, @StringOfCards, @TimeCreated)";
 
-            await _db.SaveData(sql, hand);
-        }
-
-        public Task RemoveHand(Hand hand)
-        {
-            string sql = $"DELETE FROM dbo.Hands WHERE ID = {hand.Id}";
-
-            return _db.SaveData(sql, hand);
-        }
+        await _db.SaveData(sql, hand);
     }
+
+    public Task RemoveHand(Hand hand)
+    {
+        string sql = $"DELETE FROM dbo.Hands WHERE ID = {hand.Id}";
+
+        return _db.SaveData(sql, hand);
+    }
+}
 }
