@@ -1,5 +1,7 @@
 ﻿using Entities;
-using Models;
+using Enums;
+using Model.Contracts;
+using Models.Cards;
 using Models.ModelMapping;
 
 namespace CardAppTest
@@ -11,8 +13,8 @@ namespace CardAppTest
         public void ToEntity_ShouldMapCard_FromCardModel()
         {
             //Arrange
-            CardModel cardModel = new(8, Models.Suit.Hearts);
-            List<CardModel> cardModelList = new() { cardModel };
+            HeartsCardModel cardModel = new(8);
+            List<CardBaseModel> cardModelList = new() { cardModel };
 
             Card cardEntity = new(8, Entities.Suit.Hearts);
 
@@ -36,12 +38,12 @@ namespace CardAppTest
             Card cardEntity = new(5, Entities.Suit.Spades);
             List<Card> cardEntityList = new() { cardEntity };
 
-            CardModel cardModel = new(5, Models.Suit.Spades);
+            SpadesCardModel cardModel = new(5);
 
             //Act
-            List<CardModel> cardsReturned = CardMapper.ToModel(cardEntityList);
+            List<CardBaseModel> cardsReturned = CardMapper.ToModel(cardEntityList);
 
-            CardModel cardMapped = cardsReturned.First();
+            CardBaseModel cardMapped = cardsReturned.First();
 
             //Assert
             Assert.Equal(cardModel.Suit, cardMapped.Suit);

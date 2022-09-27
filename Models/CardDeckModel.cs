@@ -1,29 +1,32 @@
-﻿using Model.Contracts;
+﻿using Enums;
+using Model.Contracts;
+using Models.Cards;
+using Models.Factories;
 using System.Collections;
 using System.Text;
 
 namespace Models
 {
-    public class CardDeckModel : IEnumerable<CardModel>, IShuffle
+    public class CardDeckModel : IEnumerable<CardBaseModel>, IShuffle
     {
-        public List<CardModel> Cards = new();
+        public List<CardBaseModel> Cards = new();
         public readonly int CardsInDeck = 52;
-        private readonly int ColorsInDeck = 4;
+        private readonly int DifferentRanks = 12;
 
         public CardDeckModel(int NumberOfDecks)
         {
             for (int i = 1; i <= NumberOfDecks; i++)
             {
-                for (int u = 0; u < (CardsInDeck / ColorsInDeck); u++)
+                for (int u = 0; u <= DifferentRanks; u++)
                 {
-                    Cards.Add(new CardModel(u, Suit.Hearts));
-                    Cards.Add(new CardModel(u, Suit.Diamonds));
-                    Cards.Add(new CardModel(u, Suit.Spades));
-                    Cards.Add(new CardModel(u, Suit.Clubs));
+                    Cards.Add(CardFactory.CreateCard(u, CardSuit.Clubs));
+                    Cards.Add(CardFactory.CreateCard(u, CardSuit.Diamonds));
+                    Cards.Add(CardFactory.CreateCard(u, CardSuit.Hearts));
+                    Cards.Add(CardFactory.CreateCard(u, CardSuit.Spades));
                 }
             }
         }
-        public void Add(params CardModel[] cards) => Cards.AddRange(cards);
+        public void Add(params CardBaseModel[] cards) => Cards.AddRange(cards);
 
         public override string ToString()
         {
@@ -35,7 +38,7 @@ namespace Models
             return builder.ToString().Trim();
         }
 
-        public IEnumerator<CardModel> GetEnumerator() => Cards.GetEnumerator();
+        public IEnumerator<CardBaseModel> GetEnumerator() => Cards.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => Cards.GetEnumerator();
 
         public void Shuffle()
@@ -47,15 +50,15 @@ namespace Models
             {
                 n--;
                 int k = rng.Next(n + 1);
-                CardModel card = Cards[k];
+                CardBaseModel card = Cards[k];
                 Cards[k] = Cards[n];
                 Cards[n] = card;
             }
         }
 
-        public List<CardModel> TakeCardsFromDeck(int amount)
+        public List<CardBaseModel> TakeCardsFromDeck(int amount)
         {
-            List<CardModel> cardsToReturn = Cards.Take(amount).ToList();
+            List<CardBaseModel> cardsToReturn = Cards.Take(amount).ToList();
             Cards.RemoveRange(0, amount);
             return cardsToReturn;
         }

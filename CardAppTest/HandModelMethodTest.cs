@@ -1,4 +1,6 @@
-﻿using Models;
+﻿using Enums;
+using Models;
+using Models.Cards;
 
 namespace CardAppTest
 {
@@ -8,20 +10,20 @@ namespace CardAppTest
         public void ThrowCheckedCardsAndRemoveThemFromHandTest_ShouldOutAmountToThrow()
         {
             //Arrange
-            CardModel cardModel1 = new(1, Suit.Clubs);
-            CardModel cardModel2 = new(2, Suit.Clubs);
-            CardModel cardModel3 = new(3, Suit.Clubs);
-            CardModel cardModel4 = new(4, Suit.Clubs);
-            CardModel cardModel5 = new(5, Suit.Clubs);
+            ClubsCardModel cardModel1 = new(1);
+            ClubsCardModel cardModel2 = new(2);
+            ClubsCardModel cardModel3 = new(3);
+            ClubsCardModel cardModel4 = new(4);
+            ClubsCardModel cardModel5 = new(5);
 
-            List<CardModel> cardList = new() { cardModel1, cardModel2, cardModel3, cardModel4, cardModel5 };
+            List<CardBaseModel> cardList = new() { cardModel1, cardModel2, cardModel3, cardModel4, cardModel5 };
 
             HandModel handModel = new();
 
             handModel.Cards.AddRange(cardList);
 
             //Act
-            List<CardModel> cardsToThrow = handModel.ThrowCheckedCardsAndRemoveThemFromHand(out int amountToThrow);
+            List<CardBaseModel> cardsToThrow = handModel.ThrowCheckedCardsAndRemoveThemFromHand(out int amountToThrow);
 
 
             //Assert

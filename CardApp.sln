@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model.Contracts", "Model.Contracts\Model.Contracts.csproj", "{9E23156F-8919-4E55-A419-E384B8DF1348}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enums", "Enums\Enums.csproj", "{5E1249C8-F2A1-4F65-BF1C-6BC8E329D48F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{9E23156F-8919-4E55-A419-E384B8DF1348}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E23156F-8919-4E55-A419-E384B8DF1348}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E23156F-8919-4E55-A419-E384B8DF1348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1249C8-F2A1-4F65-BF1C-6BC8E329D48F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1249C8-F2A1-4F65-BF1C-6BC8E329D48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1249C8-F2A1-4F65-BF1C-6BC8E329D48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1249C8-F2A1-4F65-BF1C-6BC8E329D48F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{1D9CDF55-B5AF-4767-9591-C17A8DF289B6} = {831138CB-987A-4EAC-A8BE-3320711AED86}
 		{AAAB8457-1FB4-4B57-84ED-F170CE25068A} = {250D2E00-0D28-421F-83E5-B52605089980}
 		{9E23156F-8919-4E55-A419-E384B8DF1348} = {250D2E00-0D28-421F-83E5-B52605089980}
+		{5E1249C8-F2A1-4F65-BF1C-6BC8E329D48F} = {250D2E00-0D28-421F-83E5-B52605089980}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A5DE9E1-2BD8-4E5B-89EC-48DACF74E569}

@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Cards;
 
 namespace CardAppTest
 {
@@ -13,7 +14,7 @@ namespace CardAppTest
             //Arrange
             CardDeckModel cardDeckModel = new(1);
 
-            List<CardModel> cardList = new();
+            List<CardBaseModel> cardList = new();
 
             //Act
             cardList = cardDeckModel.TakeCardsFromDeck(amount);

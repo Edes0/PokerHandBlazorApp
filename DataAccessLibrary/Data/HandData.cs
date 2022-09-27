@@ -3,17 +3,6 @@ using Entities;
 
 namespace DataAccessLibrary.Data
 {
-    public class SimpleHand
-    {
-        public Guid Id { get; set; }
-        public string StringOfCards { get; set; }
-
-        public SimpleHand(Guid guid, String stringOfCards)
-        {
-            Id = Guid.NewGuid();
-            StringOfCards = stringOfCards;
-        }
-    }
     public class HandData : IHandData
     {
         private readonly ISqlDataAccess _db;

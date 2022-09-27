@@ -1,4 +1,5 @@
 ﻿using Model.Contracts.Observers;
+using Models.Cards;
 using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -8,8 +9,8 @@ namespace Models
     public class HandModel : ISubject
     {
         [NotMapped]
-        private List<CardModel>? _cards;
-        public List<CardModel>? Cards
+        private List<CardBaseModel>? _cards;
+        public List<CardBaseModel>? Cards
         {
             get { return _cards; }
             set
@@ -53,7 +54,7 @@ namespace Models
             });
         }
 
-        public List<CardModel> ThrowCheckedCardsAndRemoveThemFromHand(out int amountToThrow)
+        public List<CardBaseModel> ThrowCheckedCardsAndRemoveThemFromHand(out int amountToThrow)
         {
             var cardsToThrow = Cards.Where(card => card.IsChecked == true).ToList();
             cardsToThrow.ForEach(card => Cards.Remove(card));
