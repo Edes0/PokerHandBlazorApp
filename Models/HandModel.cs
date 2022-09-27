@@ -24,8 +24,6 @@ namespace Models
 
         private StringOfCardsObserver _stringOfCardsObserver = new();
 
-        public void Add(params CardModel[] cards) => Cards.AddRange(cards);
-
         public HandModel()
         {
             Cards = new();

@@ -7,7 +7,7 @@ namespace Models
     public class CardDeckModel : IEnumerable<CardModel>, IShuffle
     {
         public List<CardModel> Cards = new();
-        private readonly int CardsInDeck = 52;
+        public readonly int CardsInDeck = 52;
         private readonly int ColorsInDeck = 4;
 
         public CardDeckModel(int NumberOfDecks)
