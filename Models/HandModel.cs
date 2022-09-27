@@ -54,5 +54,13 @@ namespace Models
                 o.Update(this);
             });
         }
+
+        public List<CardModel> ThrowCheckedCardsAndRemoveThemFromHand(out int amountToThrow)
+        {
+            var cardsToThrow = Cards.Where(card => card.IsChecked == true).ToList();
+            cardsToThrow.ForEach(card => Cards.Remove(card));
+            amountToThrow = cardsToThrow.Count();
+            return cardsToThrow;
+        }
     }
 }

@@ -52,5 +52,12 @@ namespace Models
                 Cards[n] = card;
             }
         }
+
+        public List<CardModel> TakeCardsFromDeck(int amount)
+        {
+            List<CardModel> cardsToReturn = Cards.Take(amount).ToList();
+            Cards.RemoveRange(0, amount);
+            return cardsToReturn;
+        }
     }
 }

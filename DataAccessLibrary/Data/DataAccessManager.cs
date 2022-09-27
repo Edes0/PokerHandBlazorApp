@@ -2,6 +2,10 @@
 
 namespace DataAccessLibrary.Data
 {
+    /// <summary>
+    /// Manager for all repositories. Implement this instead of handData etc.
+    /// Can also add new repositories in the future.
+    /// </summary>
     public sealed class DataAccessManager : IDataAccessManager
     {
         private readonly ISqlDataAccess _sqlDataAccess;

@@ -3,6 +3,9 @@ using Service.Contracts;
 
 namespace Services
 {
+    /// <summary>
+    /// Manager for all services. Implement this instead of handService etc.
+    /// </summary>
     public sealed class ServiceManager : IServiceManager
     {
         private readonly Lazy<IHandService> _handService;
