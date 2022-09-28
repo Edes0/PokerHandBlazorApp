@@ -58,7 +58,12 @@ namespace Models
 
         public List<CardBaseModel> TakeCardsFromDeck(int amount)
         {
-            List<CardBaseModel> cardsToReturn = Cards.Take(amount).ToList();
+            List<CardBaseModel> cardsToReturn = new();
+
+            if (amount < 0) return cardsToReturn;
+            if (amount > Cards.Count) return cardsToReturn;
+
+            cardsToReturn = Cards.Take(amount).ToList();
             Cards.RemoveRange(0, amount);
             return cardsToReturn;
         }
