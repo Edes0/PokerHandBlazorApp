@@ -67,7 +67,7 @@ else
         await serviceManager.HandService.CreateHandAsync(hand);
     }
 
-    
+    ///Updates hand. Removes cards to be thrown and add new ones
     private async void UpdateHand()
     {
         int AmountToThrow;
@@ -75,6 +75,7 @@ else
         await AddCardsToHand(AmountToThrow);
     }
 
+    ///Merging decks if the carddeck doesnt have enough cards
     private void MergeThrowDeckAndCardDeck()
     {
         cardDeck.Cards.AddRange(throwDeck);

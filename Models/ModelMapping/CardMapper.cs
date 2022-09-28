@@ -8,6 +8,11 @@ namespace Models.ModelMapping
 {
     public static class CardMapper
     {
+        /// <summary>
+        /// Maps card from any card model to card entity
+        /// </summary>
+        /// <param name="cardList"></param>
+        /// <returns></returns>
         public static List<Card> ToEntity(this List<CardBaseModel> cardList)
         {
             if (cardList == null) return null;
@@ -20,6 +25,11 @@ namespace Models.ModelMapping
             return cardsToReturn;
         }
 
+        /// <summary>
+        /// Maps card from card entity to any card model
+        /// </summary>
+        /// <param name="cardList"></param>
+        /// <returns></returns>
         public static List<CardBaseModel> ToModel(this List<Card> cardList)
         {
             if (cardList == null) return null;

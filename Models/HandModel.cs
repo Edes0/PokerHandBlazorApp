@@ -10,6 +10,9 @@ namespace Models
     {
         [NotMapped]
         private List<CardBaseModel>? _cards;
+        /// <summary>
+        /// The setter of Cards will notify the contructor
+        /// </summary>
         public List<CardBaseModel>? Cards
         {
             get { return _cards; }
@@ -20,7 +23,9 @@ namespace Models
             }
         }
         public string StringOfCards { get; set; }
-
+        /// <summary>
+        /// This makes it possible to add many observers
+        /// </summary>
         private List<IObserver> _observers = new();
 
         private StringOfCardsObserver _stringOfCardsObserver = new();
@@ -31,6 +36,10 @@ namespace Models
             Attach(_stringOfCardsObserver);
         }
 
+        /// <summary>
+        /// This will ovveride the ToString() method so that it writes out a string of cards. The cards also have this method so they print themselves out.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var builder = new StringBuilder();
@@ -41,11 +50,18 @@ namespace Models
             return builder.ToString().Trim();
         }
 
+        /// <summary>
+        /// Attaching observer to this class
+        /// </summary>
+        /// <param name="observer"></param>
         public void Attach(IObserver observer)
         {
             _observers.Add(observer);
         }
 
+        /// <summary>
+        /// Notify method that calles the observer update method.
+        /// </summary>
         public void Notify()
         {
             _observers.ForEach(o =>
@@ -54,6 +70,11 @@ namespace Models
             });
         }
 
+        /// <summary>
+        /// This removes cards from hand depending if cards are checked or not. They outs the amount.
+        /// </summary>
+        /// <param name="amountToThrow"></param>
+        /// <returns></returns>
         public List<CardBaseModel> ThrowCheckedCardsAndRemoveThemFromHand(out int amountToThrow)
         {
             var cardsToThrow = Cards.Where(card => card.IsChecked == true).ToList();

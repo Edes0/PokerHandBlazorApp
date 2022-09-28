@@ -6,6 +6,12 @@ namespace Models.Factories
 {
     public static class CardFactory
     {
+        /// <summary>
+        /// Factory will return CardModel depending on what CardSuit is put in into the factory method
+        /// </summary>
+        /// <param name="rank"></param>
+        /// <param name="cardSuit"></param>
+        /// <returns></returns>
         public static CardBaseModel CreateCard(int rank, CardSuit cardSuit)
         {
             CardBaseModel cardModel = null;

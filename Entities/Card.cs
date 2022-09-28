@@ -21,6 +21,9 @@ namespace Entities
             Rank = rank;
             Suit = suit;
         }
+        /// <summary>
+        /// Puts chars and symbols instead of original Rank and Suit 
+        /// </summary>
         public char SuitChar => "\u2663\u2666\u2665\u2660"[(int)Suit];
         public char RankChar => "23456789TJQKA"[Rank];
     }
