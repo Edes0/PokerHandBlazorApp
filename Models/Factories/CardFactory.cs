@@ -1,5 +1,4 @@
 ﻿using Enums;
-using Model.Contracts;
 using Models.Cards;
 
 namespace Models.Factories
@@ -16,7 +15,7 @@ namespace Models.Factories
         {
             CardBaseModel cardModel = null;
 
-            switch(cardSuit)
+            switch (cardSuit)
             {
                 case CardSuit.Diamonds:
                     cardModel = new DiamondsCardModel(rank);

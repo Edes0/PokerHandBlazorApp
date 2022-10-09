@@ -29,16 +29,16 @@ namespace DataAccessLibrary.Data
 
         public async Task InsertHand(Hand hand)
         {
-        string sql = @"INSERT INTO dbo.Hands (Id, StringOfCards, TimeCreated) VALUES (@Id, @StringOfCards, @TimeCreated)";
+            string sql = @"INSERT INTO dbo.Hands (Id, StringOfCards, TimeCreated) VALUES (@Id, @StringOfCards, @TimeCreated)";
 
-        await _db.SaveData(sql, hand);
+            await _db.SaveData(sql, hand);
+        }
+
+        public Task RemoveHand(Hand hand)
+        {
+            string sql = $"DELETE FROM dbo.Hands WHERE ID = {hand.Id}";
+
+            return _db.SaveData(sql, hand);
+        }
     }
-
-    public Task RemoveHand(Hand hand)
-    {
-        string sql = $"DELETE FROM dbo.Hands WHERE ID = {hand.Id}";
-
-        return _db.SaveData(sql, hand);
-    }
-}
 }

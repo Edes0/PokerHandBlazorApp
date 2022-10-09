@@ -1,6 +1,5 @@
 ﻿using Model.Contracts.Observers;
 using Models.Cards;
-using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
