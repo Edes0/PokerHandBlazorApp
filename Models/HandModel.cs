@@ -49,6 +49,35 @@ namespace Models
             return builder.ToString().Trim();
         }
 
+        // this.ToString() = "6♦ 3♠ 3♥ T♥ 3♣ " <--- trim
+
+        //public override string ToString()
+        //{
+        //    String testString = "";
+
+        //    foreach (var c in Cards)
+        //        testString += ($"{c} ");
+
+        //    return testString;
+        //}
+
+        // testString ""
+        // testString "6♦"
+        // testString "6♦ 3♠"
+        // testString "6♦ 3♠ 3♥"
+        // testString "6♦ 3♠ 3♥ T♥"
+        // testString "6♦ 3♠ 3♥ T♥ 3♣"
+
+        //public void BadStringMethod()
+        //{
+        //    string userString = string.Empty;
+        //    for (int i = 1; i <= 10000; i++)
+        //    {
+        //        userString += i.ToString() + " ";
+        //    }
+        //    Console.WriteLine(userString);
+        //}
+
         /// <summary>
         /// Attaching observer to this class
         /// </summary>
